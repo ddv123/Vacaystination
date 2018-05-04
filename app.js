@@ -6,19 +6,20 @@ var express        = require("express"),
     passport       = require("passport"),
     LocalStrategy  = require("passport-local"),
     methodOverride = require("method-override"),
-    Campground     = require("./models/campground"),
+    Destination     = require("./models/destination"),
     Comment        = require("./models/comment"),
     User           = require("./models/user"),
     seedDB         = require("./seeds");
 
 //requiring routes    
 var commentRoutes    = require("./routes/comments"),
-    campgroundRoutes = require("./routes/campground"),
+    destinationRoutes = require("./routes/destination"),
     indexRoutes      = require("./routes/index");
     
 // seedDB();  //seed the database
 var url = process.env.DATABASEURL || "mongodb://localhost/yc10";
 mongoose.connect(url);
+//seedDB();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
@@ -46,10 +47,10 @@ app.use(function(req, res, next){
 });
 
 app.use(indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/destinations", destinationRoutes);
+app.use("/destinations/:id/comments", commentRoutes);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
-    console.log('The YelpCamp server has started');
+    console.log('The Vacaystination server has started');
 });

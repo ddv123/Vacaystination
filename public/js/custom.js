@@ -1,0 +1,1 @@
+$('#myList a[href="#profile"]').tab('show')

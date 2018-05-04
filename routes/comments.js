@@ -1,17 +1,17 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
-var Campground = require("../models/campground");
+var Destination = require("../models/destination");
 var Comment = require("../models/comment");
 var middleware = require("../middleware")
 
 //Comments new
 router.get("/new", middleware.isLoggedIn, function(req, res){
     
-    Campground.findById(req.params.id, function(err, campground){
+    Destination.findById(req.params.id, function(err, destination){
         if(err) {
             console.log(err);
         } else {
-            res.render("comments/new", {campground: campground}); 
+            res.render("comments/new", {destination: destination}); 
         }
         
     });
@@ -20,11 +20,11 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 
 //Comments create
 router.post("/", middleware.isLoggedIn, function(req, res){
-    // lookup campground using ID
-    Campground.findById(req.params.id, function(err, campground){
+    // lookup destination using ID
+    Destination.findById(req.params.id, function(err, destination){
         if(err){
             console.log(err);
-            res.redirect("/campgrounds");
+            res.redirect("/destinations");
             
         } else {
             
@@ -33,31 +33,31 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                 if(err){
                     console.log(err);
                     req.flash("error", "Something went wrong");
-                    res.redirect("/campgrounds");
+                    res.redirect("/destinations");
                 } else {
                     //add username and id to comment
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
                     //save comment
                     comment.save();
-                    campground.comments.push(comment._id);
-                    campground.save();
+                    destination.comments.push(comment._id);
+                    destination.save();
                     req.flash("success", "Successfully added comment!");
-                    res.redirect("/campgrounds/" + campground._id);
+                    res.redirect("/destinations/" + destination._id);
                 }
             });
         }
     });
     
-    // connect new comment to campground
-    // redirect to campground showpage
+    // connect new comment to destination
+    // redirect to destination showpage
 });
 
 //COMMENT EDIT ROUTE
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
-    Campground.findById(req.parms.id, function(err, foundCampground){
-        if (err || !foundCampground){
-            req.flash("error", "No campground found");
+    Destination.findById(req.parms.id, function(err, foundDestination){
+        if (err || !foundDestination){
+            req.flash("error", "No destination found");
             res.redirect("back");
         }
         Comment.findById(req.params.comment_id, function(err, foundComment){
@@ -65,7 +65,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, 
                 req.flash("error", "Comment not found ");
                 res.redirect("back");
             } else {
-                res.render("comments/edit", {campground_id: req.params.id, comment: foundComment});   
+                res.render("comments/edit", {destination_id: req.params.id, comment: foundComment});   
             }
         });
     });
@@ -79,7 +79,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res){
         if(err){
             res.redirect("back");
         } else {
-            res.redirect("/campgrounds/" + req.params.id);
+            res.redirect("/destinations/" + req.params.id);
         }
     });
 });
@@ -92,7 +92,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
             res.redirect("back");
         } else {
             req.flash("success", "Comments deleted");
-            res.redirect("/campgrounds/" + req.params.id);
+            res.redirect("/destinations/" + req.params.id);
         }
     });
 });
