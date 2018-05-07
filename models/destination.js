@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var destinationSchema = new mongoose.Schema({
     name: String,
     location: String,
+    map: String,
     image: String,
     description: String,
     author: {

@@ -21,19 +21,22 @@
         </div>
     </div>    
     
-    <div class="destinations">
-        <% destinations.forEach(function(destination){%>
-            
-                <div class="card ">
-                  <img class="card-img-top" src="<%=destination.image%>" alt="Card image cap">
-                  <div class="card-body">
-                    <h4><%=destination.name%></h4>
-                    <p class="card-text">
-                        <a class="btn btn-success" href="/destinations/<%= destination._id %>">More Info</a>    
-                    </p>
-                  </div>
+    <!--<div class="destinations">-->
+        <div class="grid">
+            <% destinations.forEach(function(destination){%>
+                <div class="grid-item">
+                    <div class="card mb-2">
+                      <img class="card-img-top" src="<%=destination.image%>" alt="Card image cap">
+                      <div class="card-body" style="text-align: center;">
+                        <h4><%=destination.name%></h4>
+                        <p class="card-text">
+                            <a class="btn btn-success" href="/destinations/<%= destination._id %>">More Info</a>    
+                        </p>
+                      </div>
+                    </div>
                 </div>
-        <% }); %>
-    </div>
+            <% }); %>
+        </div>
+    <!--</div>-->
  </div>
 <% include ../partials/footer %>

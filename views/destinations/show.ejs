@@ -3,27 +3,23 @@
 <div class="container">
     <div class="row">
         <div class = "col-md-3">
-            <p class = "lead">Vacaystination</p>
+            <p class = "lead"><%= destination.name %></p>
             <!-- List group -->
-            <div class="list-group" id="myList" role="tablist">
-              <a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Home</a>
-              <a class="list-group-item list-group-item-action" data-toggle="list" href="#profile" role="tab">Profile</a>
-              <a class="list-group-item list-group-item-action" data-toggle="list" href="#messages" role="tab">Messages</a>
-              <a class="list-group-item list-group-item-action" data-toggle="list" href="#settings" role="tab">Settings</a>
+            <div class="list-group mb-3" id="myList" role="tablist">
+              <a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Location</a>
+              <a class="list-group-item list-group-item-action" data-toggle="list" href="#profile" role="tab">Description</a>
             </div>
             
             <!-- Tab panes -->
             <div class="tab-content">
-              <div class="tab-pane active" id="home" role="tabpanel">hello</div>
-              <div class="tab-pane" id="profile" role="tabpanel">world</div>
-              <div class="tab-pane" id="messages" role="tabpanel">its</div>
-              <div class="tab-pane" id="settings" role="tabpanel">me</div>
+              <div class="tab-pane fade show active" id="home" role="tabpanel"><%- destination.map %></div>
+              <div class="tab-pane fade show" id="profile" role="tabpanel"><p><%= destination.description %></p></div>
             </div>
         </div>
         <div class="col-md-9">
-            <div class="thumbnail">
-                <img class="img-responsive" src="<%= destination.image %>">
-                <div class="caption-full">
+            <div class="card w-100 mb-3">
+                <img class="card-img-top" src="<%= destination.image %>" style="width: 100%">
+                <div class="card-body">
                     <h4><a><%= destination.name %></a></h4>
                     <p><%= destination.description %></p>
                     <p><em>Submitted By <%=destination.author.username%></em></p>
@@ -35,7 +31,8 @@
                     <% } %>
                 </div>
             </div>
-            <div class="well">
+        
+            <div class="card w-100 p-4">
                 <div class="text-right">
                     <a class = "btn btn-success" href= "/destinations/<%=destination._id%>/comments/new">Add New Comment</a>
                 </div>

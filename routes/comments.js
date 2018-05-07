@@ -55,7 +55,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 
 //COMMENT EDIT ROUTE
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
-    Destination.findById(req.parms.id, function(err, foundDestination){
+    Destination.findById(req.params.id, function(err, foundDestination){
         if (err || !foundDestination){
             req.flash("error", "No destination found");
             res.redirect("back");
