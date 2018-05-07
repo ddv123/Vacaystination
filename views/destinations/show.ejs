@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h4><a><%= destination.name %></a></h4>
                     <p><%= destination.description %></p>
-                    <p><em>Submitted By: <%=destination.author.username%>, <%= moment(destination.createdAt).fromNow() %></em></p>
+                    <p><em>Submitted By <%=destination.author.username%><span class="float-right"><%= moment(destination.createdAt).fromNow() %></span></em></p>
                     <% if(currentUser && destination.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin) ){ %>
                     <a class = "btn btn-xs btn-warning" href = "/destinations/<%=destination._id%>/edit">Edit</a>
                     <form class="delete-form" action="/destinations/<%=destination._id%>?_method=DELETE" method="POST">
