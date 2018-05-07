@@ -12,7 +12,7 @@ middlewareObj.checkDestinationOwnership = function(req, res, next){
                 res.redirect("back");
             } else {
                 //does user own the destination
-                if(foundDestination.author.id.equals(req.user._id)){
+                if(foundDestination.author.id.equals(req.user._id) || (req.user.isAdmin) ){
                     next();
                 } else {
                     req.flash("error", "You do not have permission to do that");

@@ -9,6 +9,7 @@ var express        = require("express"),
     Destination     = require("./models/destination"),
     Comment        = require("./models/comment"),
     User           = require("./models/user"),
+    Moment          = require("moment"),
     seedDB         = require("./seeds");
 
 //requiring routes    
@@ -28,6 +29,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 // PASSPORT CONFIGURATION
+app.locals.moment = Moment;
 app.use(require("express-session")({
     secret: "Lisa is the best",
     resave: false,
