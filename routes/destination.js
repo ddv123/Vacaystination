@@ -21,13 +21,13 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to destinations array
     var name = req.body.name;
     var image = req.body.image;
-    var price = req.body.price;
+    var map = req.body.map;
     var dsc = req.body.description;
     var author = {
         id: req.user._id,
         username: req.user.username
     }
-    var newDestination = {name: name, price: price, image: image, description: dsc, author: author};
+    var newDestination = {name: name, map: map, image: image, description: dsc, author: author};
     
     // create a new destination and save to DB
     Destination.create(newDestination, function(err, newlyCreated){
@@ -45,7 +45,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
     res.render("destinations/new.ejs");
 });
 
-// SHOW - shows more info about one destination
+// SHOW - shows more info about one destination.
 router.get("/:id", function(req, res){
     //find the destination with provided ID
     Destination.findById(req.params.id).populate("comments").exec(function(err, foundDestination){
