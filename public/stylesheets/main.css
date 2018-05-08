@@ -2,6 +2,7 @@ body{
     font-family: Roboto;
     background-color: #eee;
     color: #383838;
+    margin-bottom: 40px;
 }
 
 a {
@@ -50,6 +51,7 @@ a:hover {
 .navbar-brand {
     padding: 0 0;
     padding-left: 15px;
+    padding-bottom: 8px;
 }
 
 .navbar-brand img{

@@ -17,8 +17,8 @@ var commentRoutes    = require("./routes/comments"),
     destinationRoutes = require("./routes/destination"),
     indexRoutes      = require("./routes/index");
     
-//var url = process.env.DATABASEURL || "mongodb://localhost/yc10";
-var url = process.env.DATABASEURL || "mongodb://dave:vulavula@ds121906.mlab.com:21906/vacaystination";
+var url = process.env.DATABASEURL || "mongodb://localhost/yc10";
+// var url = process.env.DATABASEURL || "mongodb://dave:vulavula@ds121906.mlab.com:21906/vacaystination";
 mongoose.connect(url);
 //seedDB();
 
